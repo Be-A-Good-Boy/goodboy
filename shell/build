@@ -1,0 +1,44 @@
+#!/bin/bash
+GB_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+
+CONFIG_FILE="$GB_ROOT/goodboy.config"
+
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+else
+    echo "goodboy.cofig not found."
+    exit 1
+fi
+
+read -rp "Version (dist/release): " answer
+answer="${answer,,}"
+
+if [[ "$answer" == "dist" ]]; then
+    GB_VER="dist"
+elif [[ "$answer" == "release" ]]; then
+    GB_VER="release"
+fi
+
+echo "Building for version: $GB_VER"
+
+echo "Cleaning up old build files"
+rm -rf "$GB_ROOT/$GB_VER"
+mkdir -p "$GB_ROOT/$GB_VER"
+
+echo "Compiling Pug to HTML"
+pug "$GB_ROOT/src/$GB_IPAGES" -o "$GB_ROOT/$GB_VER/$GB_OPAGES"
+
+echo "Compiling Stylus to CSS"
+stylus "$GB_ROOT/src/$GB_ISTYLES" -o "$GB_ROOT/$GB_VER/$GB_OSTYLES"
+
+echo "Copying scripts over to $GB_VER"
+mkdir -p "$GB_ROOT/$GB_VER/$GB_OSCRIPTS"
+cp -a "$GB_ROOT/src/$GB_ISCRIPTS" "$GB_ROOT/$GB_VER"
+
+echo "Copying assets over to $GB_VER"
+mkdir -p "$GB_ROOT/$GB_VER/$GB_OASSETS"
+cp -a "$GB_ROOT/src/$GB_IASSETS" "$GB_ROOT/$GB_VER"
+
+echo "Build task completed for [$GB_VER]."
+
+exit 0

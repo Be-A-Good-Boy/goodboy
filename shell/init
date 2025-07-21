@@ -1,0 +1,23 @@
+#!/bin/bash
+GB_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+CONFIG_FILE="$GB_ROOT/goodboy.config"
+
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+else
+    echo "goodboy.cofig not found."
+    exit 1
+fi
+
+cd "$GB_ROOT"
+npm init -y
+echo "Initialized package.json"
+npm add express fengari fengari-node-cli pug-cli stylus
+echo "Listed dependencies: express, fengari, fengari-node-cli, nodemon, pug-cli, and stylus for the project."
+
+curl -o "$GB_ROOT/src/$GB_ISCRIPTS/js/fengari-web.js" "https://cdn.jsdelivr.net/npm/fengari-web@0.1.4/dist/fengari-web.js"
+echo "Downloaded fengari-web.js"
+
+echo "Finished task for the initializing."
+
+exit 0

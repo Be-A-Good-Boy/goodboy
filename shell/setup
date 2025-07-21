@@ -1,0 +1,67 @@
+#!/bin/bash
+set -e
+
+GB_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+
+echo "This will install Node.js, NPM, and the dependencies within this project."
+read -rp "Proceed? (y/n): " answer
+answer="${answer,,}"
+
+if [[ "$answer" != "y" && "$answer" != "yes" ]]; then
+    echo "Aborting installation."
+    exit 0
+fi
+
+CONFIG_FILE="$GB_ROOT/goodboy.config"
+
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+else
+    echo "goodboy.cofig not found."
+    exit 1
+fi
+
+if command -v node >/dev/null 2>&1; then
+    echo "Node.js found"
+    echo "Using existing Node.js with version: $(node -v)"
+else
+    echo "Node.js not found. Installing Node.js using nvm (Node Version Manager)."
+
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    echo "NVM installed."
+
+    nvm install node
+fi
+
+echo "Node.js version: $(node -v)"
+echo "NPM version: $(npm -v)"
+echo "Nice! Node.js and NPM are installed."
+
+echo "Let's install dependecies."
+npm install express -g
+echo "Installed express."
+npm install fengari -g
+echo "Installed fengari."
+# npm install fengari-loader -g
+# echo "Installed fengari-loader."
+npm install fengari-node-cli -g
+echo "Installed fengari-node-cli."
+# npm install fengari-web -g
+# echo "Installed fengari-web."
+npm install nodemon -g
+echo "Installed nodemon."
+npm install pug-cli -g
+echo "Installed pug-cli."
+npm install stylus -g
+echo "Installed stylus-cli."
+
+echo "Finished installing dependencies."
+
+echo "Setup task finished."
+echo "Reloading shell configurations."
+
+source ~/.bashrc || source ~/.zshrc || source ~/.profile

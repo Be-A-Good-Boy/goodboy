@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.config": "shellscript",
+        "*.jade": "jade",
+        "*.lua": "lua",
+        "*.pug": "jade",
+        "*.styl": "stylus",
+        "shell/*": "shellscript"
+    },
+    "livePreview.serverRoot": "dist/"
+}

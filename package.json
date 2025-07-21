@@ -1,0 +1,21 @@
+{
+  "name": "goodboy-starters",
+  "version": "1.0.0",
+  "description": "A template that will never disappointed you in your web development is a...\r # Good Boy!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node serve/app.js",
+    "debug": "nodemon serve/app.js"
+  },
+  "keywords": [],
+  "author": "A very good boy!",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0",
+    "fengari": "^0.1.4",
+    "fengari-node-cli": "^0.1.0",
+    "pug-cli": "^1.0.0-alpha6",
+    "stylus": "^0.64.0"
+  }
+}
