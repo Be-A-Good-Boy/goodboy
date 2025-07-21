@@ -12,9 +12,11 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "fengari": "^0.1.4",
     "fengari-node-cli": "^0.1.0",
+    "nib": "^1.2.0",
     "pug-cli": "^1.0.0-alpha6",
     "stylus": "^0.64.0"
   }
