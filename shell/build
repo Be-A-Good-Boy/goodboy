@@ -17,6 +17,9 @@ if [[ "$answer" == "dist" ]]; then
     GB_VER="dist"
 elif [[ "$answer" == "release" ]]; then
     GB_VER="release"
+else
+    echo "Invalid version name."
+    exit 1
 fi
 
 echo "Building for version: $GB_VER"

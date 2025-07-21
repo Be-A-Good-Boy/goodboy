@@ -3,7 +3,7 @@ local jsTables = {}
 local js = require("js")
 local global = js.global
 
-local new = global.new
+local new = js.new
 local typeof = global.typeof
 
 local array = global.Array
@@ -15,19 +15,19 @@ function jsTables.Construct(t)
     end
 
     if #t > 0 then
-        local arr = new array
+        local arr = new(array)
 
         for i, v in ipairs(t) do
             if type(v) == "table" then
-                arr.push(jsTables.Construct(v))
+                arr:push(jsTables.Construct(v))
             else
-                arr.push(v)
+                arr:push(v)
             end
         end
 
         return arr, "Array"
     else
-        local obj = new object
+        local obj = new(object)
 
         for k, v in pairs(t) do
             if type(v) == "table" then

@@ -7,5 +7,9 @@
         "*.styl": "stylus",
         "shell/*": "shellscript"
     },
-    "livePreview.serverRoot": "dist/"
+    "livePreview.serverRoot": "dist/",
+    "liveServer.settings.mount": [
+        ["/", "./dist/pages"]
+    ],
+    "liveServer.settings.root": "dist/"
 }

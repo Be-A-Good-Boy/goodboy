@@ -1,9 +1,7 @@
 -- [[ Good boy's needs ]]
 
 local utils = {
-    jsTables = require("tools/jsTables"),
+    jsTables = require("scripts/utils/tools/jsTables"),
 }
-
-
 
 return utils

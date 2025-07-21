@@ -1,6 +1,6 @@
 local js = require("js")
 
--- local utils = require("utils")
+local utils = require("scripts/utils")
 
 local document = js.global.document
 
