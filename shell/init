@@ -15,6 +15,7 @@ echo "Initialized package.json"
 npm add dotenv express fengari fengari-node-cli nib pug-cli stylus
 echo "Listed dependencies: express, fengari, fengari-node-cli, nodemon, pug-cli, and stylus for the project."
 
+mkdir "$GB_ROOT/src/$GB_ISCRIPTS/js"
 curl -o "$GB_ROOT/src/$GB_ISCRIPTS/js/fengari-web.js" "https://cdn.jsdelivr.net/npm/fengari-web@0.1.4/dist/fengari-web.js"
 echo "Downloaded fengari-web.js"
 
